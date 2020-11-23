@@ -1,0 +1,67 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h4 class="card-title">Editar cliente</h4>
+            <p class="card-category">Por favor ingrese los datos necesarios</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="editClient" (ngSubmit)="onSubmit()">
+
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Apellido" type="text" formControlName="apellido" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Nombre" type="text" formControlName="nombre" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Identificación personal (DNI). Si es un número no separe con puntos"
+                      type="text" formControlName="dni" required>
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Correo electrónico" type="email" formControlName="mail">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Número de teléfono" type="text" formControlName="cel">
+                  </mat-form-field>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Ciudad o Provincia" type="text" formControlName="provincia">
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="País" type="text" formControlName="pais">
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button mat-raised-button type="submit" [disabled]="editClient.invalid"
+                class="btn btn-danger pull-right">Editar</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

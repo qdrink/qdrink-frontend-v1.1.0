@@ -1,0 +1,76 @@
+ <div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title ">Clientes registrados</h4>
+                        <p class="card-category"> Clientes que han sido cargados al sistema anteriormente</p>
+                    </div>
+                    <div class="card-body">
+                        <div class="table-responsive">
+                            <mat-form-field>
+                                <mat-label>Buscar</mat-label>
+                                <input matInput (keyup)="filtrar($event)" placeholder="Buscar">
+                              </mat-form-field>
+                                <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort class="table">
+                              
+                                  <ng-container matColumnDef="apellido"  >
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header > Apellido </th>
+                                    <td mat-cell *matCellDef="let client"> {{client.apellido}} </td>
+                                  </ng-container>
+                              
+                                  <ng-container matColumnDef="nombre">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+                                    <td mat-cell *matCellDef="let client"> {{client.nombre}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="dni">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Identificación </th>
+                                    <td mat-cell *matCellDef="let client"> {{client.dni}} </td>
+                                  </ng-container>
+                              
+                                  <ng-container matColumnDef="dinero">
+                                    <th mat-header-cell *matHeaderCellDef mat-sort-header> Dinero disponible </th>
+                                    <td mat-cell *matCellDef="let client"> {{client.dinero}} </td>
+                                  </ng-container>
+                                  <ng-container matColumnDef="acciones">
+                                    <th mat-header-cell *matHeaderCellDef width ="20%"> Acciones </th>
+                                    <td mat-cell *matCellDef="let client">
+                                        <mat-form-field >
+                                            <mat-label>Acciones</mat-label>
+                                            <mat-select>
+                                                <mat-option>
+                                                    <a class="nav-link" [routerLink]="['/user-profile']" [queryParams]="{id: client.id}">
+                                                       Ver
+                                                    </a>                                                    
+                                                    </mat-option>
+                                              <mat-option>
+                                                <a class="nav-link" [routerLink]="['/edit']" [queryParams]="{id: client.id}">
+                                                   Editar
+                                                </a>                                                    
+                                                </mat-option>
+                                                <mat-option>
+                                                <a class="nav-link"  (click)="delete(client.id)" [routerLink]="">
+                                                    Eliminar
+                                                 </a>                                                    
+                                                 </mat-option>
+                                                 
+                                            </mat-select>
+                                          </mat-form-field>    
+                                    </td>
+                                  </ng-container>
+                              
+                                  <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                                  <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                                </table>
+                                <mat-paginator [pageSizeOptions]="[5, 10, 15]" showFirstLastButtons></mat-paginator>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+                   </div>
+    </div>
+  </div>
+ 
+  
