@@ -452,12 +452,12 @@
             </div>
         </div> -->
         <div class="row">
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-4 col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-tabs card-header-primary">
+                    <div class="card-header card-header-tabs card-header-danger">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
-                                <span class="nav-tabs-title">Código Configuración</span>
+                                <span class="nav-tabs-title">Código Configuración Pico</span>
 
                             </div>
                         </div>
@@ -483,9 +483,9 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12">
+            <div class="col-lg-4 col-md-12">
                 <div class="card">
-                    <div class="card-header card-header-tabs card-header-primary">
+                    <div class="card-header card-header-tabs card-header-danger">
                         <div class="nav-tabs-navigation">
                             <div class="nav-tabs-wrapper">
                                 <span class="nav-tabs-title">CLIENTE GENERAL</span>
@@ -505,7 +505,37 @@
                                         </mat-form-field>
                                     </div>
                                 </div>
-                                <button mat-raised-button type="submit" class="btn btn-primary pull-right"
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                                    [disabled]="mailForm1.invalid">Enviar QR</button>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-tabs card-header-danger">
+                        <div class="nav-tabs-navigation">
+                            <div class="nav-tabs-wrapper">
+                                <span class="nav-tabs-title">Código Configuración Tablet</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="tab-content">
+                            <ngx-qrcode [elementType]="elementType2" [errorCorrectionLevel]="correctionLevel2"
+                                [value]="value2" cssClass="bshadow">
+                            </ngx-qrcode>
+                            <form [formGroup]="mailForm2" (ngSubmit)="onSend2()">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <mat-form-field class="example-full-width">
+                                            <input matInput type="email" formControlName="mail2" required>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <button mat-raised-button type="submit" class="btn btn-danger pull-right"
                                     [disabled]="mailForm1.invalid">Enviar QR</button>
                                 <div class="clearfix"></div>
                             </form>

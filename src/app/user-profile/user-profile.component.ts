@@ -26,9 +26,14 @@ import Swal from 'sweetalert2';
 
 export class UserProfileComponent implements OnInit {
 
-  elementType = NgxQrcodeElementTypes.URL;
+  //elementType = NgxQrcodeElementTypes.URL;
   correctionLevel = NgxQrcodeErrorCorrectionLevels.HIGH;
   value = '';
+  elementType: 'url' | 'canvas' | 'img' = 'url';
+  href : string;
+
+  href1 : string;
+
   id: string;
   client: Client;
 
@@ -41,6 +46,7 @@ export class UserProfileComponent implements OnInit {
 
   transForm: FormGroup;
   mailForm: FormGroup;
+  whatForm: FormGroup;
 
   constructor(
     private actRoute: ActivatedRoute,
@@ -52,6 +58,7 @@ export class UserProfileComponent implements OnInit {
     //
     this.id = this.actRoute.snapshot.queryParams.id;
     this.client = {
+      id:'',
       nombre: '',
       apellido: '',
       dni: '',
@@ -73,6 +80,10 @@ export class UserProfileComponent implements OnInit {
       mail: new FormControl(null, [Validators.required]),
      
     });
+    this.whatForm = new FormGroup({
+      what: new FormControl(null, [Validators.required]),
+     
+    });
     this.actRoute.paramMap.subscribe(params => {
       this.ngOnInit();
     });
@@ -89,6 +100,7 @@ export class UserProfileComponent implements OnInit {
         this.client = res.client;
         console.log(this.client)
         this.mailForm.controls['mail'].setValue(this.client.mail)
+        this.whatForm.controls['what'].setValue(this.client.cel)
         this.dataSource = new MatTableDataSource(res.transactions);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -134,9 +146,29 @@ export class UserProfileComponent implements OnInit {
     );
     console.log(this.transForm.value)
   }
+  async onWhat() {
+
+     this.href = await document.getElementsByTagName('img')[1].src;
+    
+   //  window.location.href = await 'https://api.whatsapp.com/send?phone=5492647433174&text='+encodeURIComponent(this.href);
+
+  var fakeLink = document.createElement('a');
+
+    fakeLink.setAttribute('href', 'https://web.whatsapp.com/send?phone=5492647433174&text='+encodeURIComponent(this.href));
+    fakeLink.setAttribute('data-action', 'share/whatsapp/share');
+
+    fakeLink.click();
+  } 
+  mensaje(){
+    this.href="https://api.whatsapp.com/send?phone=5492645665964"
+  }
+  downloadImage(){
+    this.href = document.getElementsByTagName('img')[1].src;
+    
+  }
 }
 export class Client {
-  constructor(public nombre: string, public cel: string, public mail: string, public createdAt: string, public dni: string, public provincia: string, public pais: string, public apellido: string, public dinero: number) {
+  constructor(public id:string,public nombre: string, public cel: string, public mail: string, public createdAt: string, public dni: string, public provincia: string, public pais: string, public apellido: string, public dinero: number) {
   }
 }
 export class Transaction {

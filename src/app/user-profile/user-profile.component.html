@@ -34,7 +34,7 @@
             <form>
               <div class="row">
                 <div class="col-md-12">
-                  <ngx-qrcode [elementType]="elementType" [errorCorrectionLevel]="correctionLevel" [value]="value"
+                  <ngx-qrcode [elementType]="elementType"  id="qrCodeImage"   [errorCorrectionLevel]="correctionLevel" [value]="value"
                     cssClass="bshadow">
                   </ngx-qrcode>
 
@@ -44,6 +44,11 @@
               <button mat-raised-button (click)="generar()" class="btn btn-danger pull-right">Generar</button>
               <div class="clearfix"></div>
             </form>
+            <a class="btn btn-danger pull-right" [href]="href" (click)="downloadImage()" download={{client.apellido}}{{client.nombre}}>1° Descargar QR</a>
+
+            <a class="btn btn-danger pull-right" target="_blank" href="https://api.whatsapp.com/send?phone={{client.cel}}&text=Muchas gracias {{client.nombre}} por visitarnos. Te enviamos el código QR" >2° Enviar Whatsapp</a>
+            <button class="btn btn-danger pull-right"  (click)="onWhat()">Whatsapp</button>
+
           </div>
         </div>
         <div class="card">
@@ -151,5 +156,7 @@
         </div>
       </div>
     </div>
+   
+   
   </div>
 </div>

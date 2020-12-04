@@ -22,21 +22,39 @@ export class DashboardComponent implements OnInit {
   correctionLevel1 = NgxQrcodeErrorCorrectionLevels.HIGH;
   value1 = '';
   //
-  mailForm: FormGroup; //configuracion
-  mailForm1: FormGroup;//cliente general
+  elementType2 = NgxQrcodeElementTypes.URL;
+  correctionLevel2 = NgxQrcodeErrorCorrectionLevels.HIGH;
+  value2 = '';
   //
-  info = {}
+  mailForm: FormGroup; //configuracion pico
+  mailForm1: FormGroup;//cliente general
+  mailForm2: FormGroup;//configuracion local
+
+  //
+  info:Info
+  
   constructor(
     private httpClient: HttpClient,
     private dataService: DataService) {
+      this.info={
+        transactions:'',
+        ingreso:'',
+        users:'',
+        salida:''
+      }
     this.generar()
     this.generar1()
+    this.generar2()
     this.mailForm = new FormGroup({
       mail: new FormControl('rdcocuelle@yahoo.com.ar', [Validators.required]),
 
     });
     this.mailForm1 = new FormGroup({
       mail1: new FormControl('rdcocuelle@yahoo.com.ar', [Validators.required]),
+
+    });
+    this.mailForm2 = new FormGroup({
+      mail2: new FormControl('rdcocuelle@yahoo.com.ar', [Validators.required]),
 
     });
   }
@@ -60,9 +78,18 @@ export class DashboardComponent implements OnInit {
     var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     console.log(decryptedData);
   }
+  generar2() {
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify('ConfiguracionLocal'), 'MdMiAJOREGeA').toString();
+    this.value2 = ciphertext;
+    console.log(ciphertext);
+    // Decrypt
+    var bytes = CryptoJS.AES.decrypt(ciphertext, 'MdMiAJOREGeA');
+    var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    console.log(decryptedData);
+  }
   onSend() {
     var ciphertext = CryptoJS.AES.encrypt(JSON.stringify('ConfiguracionPico'), 'MdMiAJOREGeA').toString();
-    this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", { texto: 'Código QR - Configuracíon', mail: this.mailForm.controls['mail'].value, qr: ciphertext }).subscribe(
+    this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", { texto: 'Código QR - Configuracíon pico', mail: this.mailForm.controls['mail'].value, qr: ciphertext }).subscribe(
       (res) => {
         Swal.fire('Envio realizado!', '', 'success')
       }
@@ -73,6 +100,16 @@ export class DashboardComponent implements OnInit {
   onSend1() {
     var ciphertext = CryptoJS.AES.encrypt(JSON.stringify('ClienteGeneral'), 'MdMiAJOREGeA').toString();
     this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", { texto: 'Código QR - Cliente General', mail: this.mailForm1.controls['mail1'].value, qr: ciphertext }).subscribe(
+      (res) => {
+        Swal.fire('Envio realizado!', '', 'success')
+      }
+      ,
+      (err) => console.log(err)
+    );
+  }
+  onSend2() {
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify('ConfiguracionLocal'), 'MdMiAJOREGeA').toString();
+    this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", { texto: 'Código QR - Configuracion tablet', mail: this.mailForm2.controls['mail2'].value, qr: ciphertext }).subscribe(
       (res) => {
         Swal.fire('Envio realizado!', '', 'success')
       }
@@ -223,4 +260,8 @@ export class DashboardComponent implements OnInit {
     this.startAnimationForBarChart(websiteViewsChart);
   }
 
+}
+export class Info {
+  constructor(public users: string, public ingreso: string, public salida: string,public transactions:string) {
+  }
 }
