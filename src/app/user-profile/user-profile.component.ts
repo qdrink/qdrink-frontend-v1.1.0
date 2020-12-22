@@ -45,6 +45,7 @@ export class UserProfileComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
   transForm: FormGroup;
+  transnegForm: FormGroup;
   mailForm: FormGroup;
   whatForm: FormGroup;
 
@@ -67,12 +68,19 @@ export class UserProfileComponent implements OnInit {
       createdAt: '',
       dinero: 0,
       provincia: '',
-      pais: ''
+      pais: '',
+      nacimiento:''
     }
     //
     this.transForm = new FormGroup({
       dinero: new FormControl(null, [Validators.required, Validators.min(0)]),
       ingreso: new FormControl(true),
+      client: new FormControl(this.id)
+
+    });
+    this.transnegForm = new FormGroup({
+      dinero: new FormControl(null, [Validators.required, Validators.min(0)]),
+      ingreso: new FormControl(false),
       client: new FormControl(this.id)
 
     });
@@ -135,6 +143,18 @@ export class UserProfileComponent implements OnInit {
     );
     console.log(this.transForm.value)
   }
+  onSubmit1() {
+    this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "transactions", this.transnegForm.value).subscribe(
+      (res) => {
+        Swal.fire('Descuento realizado!', '', 'success')
+        this.transnegForm.controls['dinero'].setValue('')
+        this.ngOnInit();
+      }
+      ,
+      (err) => console.log(err)
+    );
+    console.log(this.transForm.value)
+  }
   onSend(){
     var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(this.id), 'MdMiAJOREGeA').toString();
     this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", {mail: this.mailForm.controls['mail'].value,qr:ciphertext}).subscribe(
@@ -168,7 +188,7 @@ export class UserProfileComponent implements OnInit {
   }
 }
 export class Client {
-  constructor(public id:string,public nombre: string, public cel: string, public mail: string, public createdAt: string, public dni: string, public provincia: string, public pais: string, public apellido: string, public dinero: number) {
+  constructor(public id:string,public nacimiento:string,public nombre: string, public cel: string, public mail: string, public createdAt: string, public dni: string, public provincia: string, public pais: string, public apellido: string, public dinero: number) {
   }
 }
 export class Transaction {

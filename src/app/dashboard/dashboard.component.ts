@@ -31,17 +31,19 @@ export class DashboardComponent implements OnInit {
   mailForm2: FormGroup;//configuracion local
 
   //
-  info:Info
-  
+  info: Info
+  errores
   constructor(
     private httpClient: HttpClient,
     private dataService: DataService) {
-      this.info={
-        transactions:'',
-        ingreso:'',
-        users:'',
-        salida:''
-      }
+    this.info = {
+      transactions: '',
+      ingreso: '',
+      users: '',
+      salida: ''
+    }
+   // this.errores = this.numToBit(10)
+    console.log(this.errores);
     this.generar()
     this.generar1()
     this.generar2()
@@ -68,6 +70,38 @@ export class DashboardComponent implements OnInit {
     var bytes = CryptoJS.AES.decrypt(ciphertext, 'MdMiAJOREGeA');
     var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
     console.log(decryptedData);
+  }
+  numToBit(num) {
+    var number = num
+    var result = []
+    for (let i = 0; i < 6; i++)
+      result[i] = '0'
+
+    if (num >= 32) {
+      result[5] = '1'
+      num = num - 32
+    }
+    if (num >= 16) {
+      result[4] = '1'
+      num = num - 16
+    }
+    if (num >= 8) {
+      result[3] = '1'
+      num = num - 8
+    }
+    if (num >= 4) {
+      result[2] = '1'
+      num = num - 4
+    }
+    if (num >= 2) {
+      result[1] = '1'
+      num = num - 2
+    }
+    if (num >= 1) {
+      result[0] = '1'
+      num = num - 1
+    }
+    return result
   }
   generar1() {
     var ciphertext = CryptoJS.AES.encrypt(JSON.stringify('ClienteGeneral'), 'MdMiAJOREGeA').toString();
@@ -262,6 +296,6 @@ export class DashboardComponent implements OnInit {
 
 }
 export class Info {
-  constructor(public users: string, public ingreso: string, public salida: string,public transactions:string) {
+  constructor(public users: string, public ingreso: string, public salida: string, public transactions: string) {
   }
 }

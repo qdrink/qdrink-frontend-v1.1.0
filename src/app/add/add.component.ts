@@ -25,6 +25,7 @@ export class AddComponent implements OnInit {
       pais: new FormControl('Argentina'),
       mail: new FormControl(''),
       cel: new FormControl(''),
+      nacimiento: new FormControl(''),
 
     });
   }

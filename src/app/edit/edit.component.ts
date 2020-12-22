@@ -36,10 +36,12 @@ export class EditComponent implements OnInit {
       pais: new FormControl(),
       mail: new FormControl(''),
       cel: new FormControl(''),
+      ocupado: new FormControl(''),
+      nacimiento: new FormControl('')
 
     });
   
-    this.httpClient.get<any>(this.dataService.obtenerUrlServer()+'clients/'+this.id).subscribe(
+    this.httpClient.get<any>(this.dataService.obtenerUrlServer()+'clients/check/'+this.id).subscribe(
       (res) => {
       this.editClient = this.fb.group({
         nombre: res.nombre,
@@ -49,6 +51,8 @@ export class EditComponent implements OnInit {
         pais:res.pais,
         cel: res.cel,
         mail:res.mail,
+        ocupado:res.ocupado,
+        nacimiento: (res.nacimiento)
       })
       }
       ,

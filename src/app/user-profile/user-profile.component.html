@@ -15,6 +15,7 @@
               {{client.dni}} <br>
               {{client.mail}}<br>
               {{client.cel}} <br>
+              {{client.nacimiento| date}} <br>
               <strong>ALTA: {{client.createdAt | date}}</strong> <br>
             </p>
 
@@ -41,14 +42,14 @@
                 </div>
 
               </div>
-              <button mat-raised-button (click)="generar()" class="btn btn-danger pull-right">Generar</button>
+              <button mat-raised-button (click)="generar()" class="btn btn-danger  btn-sm pull-right">Generar</button>
               <div class="clearfix"></div>
             </form>
-            <a class="btn btn-danger pull-right" [href]="href" (click)="downloadImage()" download={{client.apellido}}{{client.nombre}}>1° Descargar QR</a>
+            <a class="btn btn-danger  btn-sm pull-right" [href]="href" (click)="downloadImage()" download={{client.apellido}}{{client.nombre}}>1° Descargar QR</a>
 
-            <a class="btn btn-danger pull-right" target="_blank" href="https://api.whatsapp.com/send?phone={{client.cel}}&text=Muchas gracias {{client.nombre}} por visitarnos. Te enviamos el código QR" >2° Enviar Whatsapp</a>
-            <button class="btn btn-danger pull-right"  (click)="onWhat()">Whatsapp</button>
-
+            <a class="btn btn-danger  btn-sm pull-right" target="_blank" href="https://api.whatsapp.com/send?phone={{client.cel}}&text=Muchas gracias {{client.nombre}} por visitarnos. Te enviamos el código QR" >2° Enviar Whatsapp</a>
+<!--             <button class="btn btn-danger  btn-sm pull-right"  (click)="onWhat()">Whatsapp</button>
+ -->
           </div>
         </div>
         <div class="card">
@@ -135,7 +136,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h5 class="card-title">Realizar recarga</h5>
+            <h5 class="card-title">Recargar cuenta</h5>
             <p class="card-category">Ingrese importe a cargar en la cuenta</p>
           </div>
           <div class="card-body">
@@ -150,6 +151,27 @@
 
               <button mat-raised-button type="submit" class="btn btn-danger pull-right"
                 [disabled]="transForm.invalid">Cargar</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header card-header-danger">
+            <h5 class="card-title">Quitar dinero</h5>
+            <p class="card-category">Ingrese importe a quitar en la cuenta</p>
+          </div>
+          <div class="card-body">
+            <form [formGroup]="transnegForm" (ngSubmit)="onSubmit1()">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Importe" type="number" min="0" formControlName="dinero" required>
+                  </mat-form-field>
+                </div>
+              </div>
+
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                [disabled]="transnegForm.invalid">Descontar</button>
               <div class="clearfix"></div>
             </form>
           </div>
