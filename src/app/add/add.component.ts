@@ -24,7 +24,7 @@ export class AddComponent implements OnInit {
       provincia: new FormControl('Mendoza'),
       pais: new FormControl('Argentina'),
       mail: new FormControl(''),
-      cel: new FormControl(''),
+      cel: new FormControl('549261', Validators.required),
       nacimiento: new FormControl(''),
 
     });

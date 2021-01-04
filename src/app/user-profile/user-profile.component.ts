@@ -73,7 +73,7 @@ export class UserProfileComponent implements OnInit {
     }
     //
     this.transForm = new FormGroup({
-      dinero: new FormControl(null, [Validators.required, Validators.min(0)]),
+      dinero: new FormControl(null, [Validators.required, Validators.min(0),, Validators.max(5000)]),
       ingreso: new FormControl(true),
       client: new FormControl(this.id)
 

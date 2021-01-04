@@ -44,7 +44,7 @@ export class DashboardComponent implements OnInit {
     }
    // this.errores = this.numToBit(10)
     console.log(this.errores);
-    this.generar()
+  /*  this.generar()
     this.generar1()
     this.generar2()
     this.mailForm = new FormGroup({
@@ -58,7 +58,7 @@ export class DashboardComponent implements OnInit {
     this.mailForm2 = new FormGroup({
       mail2: new FormControl('rdcocuelle@yahoo.com.ar', [Validators.required]),
 
-    });
+    });*/
   }
 
 
