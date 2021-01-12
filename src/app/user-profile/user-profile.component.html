@@ -38,9 +38,7 @@
                   <ngx-qrcode [elementType]="elementType"  id="qrCodeImage"   [errorCorrectionLevel]="correctionLevel" [value]="value"
                     cssClass="bshadow">
                   </ngx-qrcode>
-
                 </div>
-
               </div>
               <button mat-raised-button (click)="generar()" class="btn btn-danger  btn-sm pull-right">Generar</button>
               <div class="clearfix"></div>
@@ -54,7 +52,7 @@
         </div>
         <div class="card">
           <div class="card-body">
-            <form [formGroup]="mailForm" (ngSubmit)="onSend()">
+           <!-- <form [formGroup]="mailForm" (ngSubmit)="onSend()">
               <div class="row">
                 <div class="col-md-12">
                   <mat-form-field class="example-full-width">
@@ -64,6 +62,18 @@
               </div>
               <button mat-raised-button type="submit" class="btn btn-danger pull-right"
                 [disabled]="mailForm.invalid">Enviar QR</button>
+              <div class="clearfix"></div>
+            </form>-->
+            <form [formGroup]="whatForm" (ngSubmit)="onSendWhat()">
+              <div class="row">
+                <div class="col-md-12">
+                  <mat-form-field class="example-full-width">
+                    <input matInput placeholder="Celular" type="number" formControlName="cel" required>
+                  </mat-form-field>
+                </div>
+              </div>
+              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                [disabled]="whatForm.invalid">Enviar QR</button>
               <div class="clearfix"></div>
             </form>
           </div>

@@ -89,7 +89,7 @@ export class UserProfileComponent implements OnInit {
      
     });
     this.whatForm = new FormGroup({
-      what: new FormControl(null, [Validators.required]),
+      cel: new FormControl(null, [Validators.required]),
      
     });
     this.actRoute.paramMap.subscribe(params => {
@@ -108,7 +108,7 @@ export class UserProfileComponent implements OnInit {
         this.client = res.client;
         console.log(this.client)
         this.mailForm.controls['mail'].setValue(this.client.mail)
-        this.whatForm.controls['what'].setValue(this.client.cel)
+        this.whatForm.controls['cel'].setValue(this.client.cel)
         this.dataSource = new MatTableDataSource(res.transactions);
         this.dataSource.sort = this.sort;
         this.dataSource.paginator = this.paginator;
@@ -158,6 +158,17 @@ export class UserProfileComponent implements OnInit {
   onSend(){
     var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(this.id), 'MdMiAJOREGeA').toString();
     this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/mail", {mail: this.mailForm.controls['mail'].value,qr:ciphertext}).subscribe(
+      (res) => {
+        Swal.fire('Envio realizado!', '', 'success')      
+      }
+      ,
+      (err) => console.log(err)
+    );
+    console.log(this.transForm.value)
+  }
+  onSendWhat(){
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(this.id), 'MdMiAJOREGeA').toString();
+    this.httpClient.post<any>(this.dataService.obtenerUrlServer() + "clients/sendqr",  { texto: 'Hola '+this.client.nombre+', este es tu código QR ¡Que disfrutes de la experiencia! ', cel: this.whatForm.controls['cel'].value, qr: ciphertext }).subscribe(
       (res) => {
         Swal.fire('Envio realizado!', '', 'success')      
       }
