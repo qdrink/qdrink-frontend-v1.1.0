@@ -11,6 +11,8 @@ import { UpgradeComponent } from '../../upgrade/upgrade.component';
 import { ListComponent } from '../../list/list.component';
 import { AddComponent } from '../../add/add.component';
 import { EditComponent } from '../../edit/edit.component';
+import { ConsumoComponent } from '../../consumo/consumo.component';
+
 
 
 
@@ -69,6 +71,8 @@ export const AdminLayoutRoutes: Routes = [
     { path: 'list',        component: ListComponent },
     { path: 'add',        component: AddComponent },
     { path: 'edit',        component: EditComponent },
+    { path: 'consumo',        component: ConsumoComponent },
+
 
 
 

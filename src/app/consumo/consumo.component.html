@@ -1,0 +1,87 @@
+<div class="main-content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header card-header-danger">
+                        <h4 class="card-title">Buscar recargos de dinero realizados entre fechas</h4>
+                        <p class="card-category">Por favor ingrese las fechas necesarias</p>
+                    </div>
+                    <div class="card-body">
+                        <form [formGroup]="searchConsumo" (ngSubmit)="onSubmit()">
+
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="datetime-local" placeholder="Inicio"
+                                            formControlName="inicio">
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-6">
+                                    <mat-form-field class="example-full-width">
+                                        <input matInput type="datetime-local" placeholder="Final"
+                                            formControlName="final">
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <button mat-raised-button type="submit" [disabled]="searchConsumo.invalid"
+                                class="btn btn-danger pull-right">Buscar</button>
+                            <div class="clearfix"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf=" transaciones.length > 0">
+            <div class="col-md-12">
+              <div class="card">
+                <div class="card-header card-header-danger">
+                  <h4 class="card-title ">Recargos encontrados</h4>
+                  <p class="card-category"> Recargos registrados por el sistema</p>
+                </div>
+                <div class="card-body">
+                  <div class="table-responsive">
+                    <div class="table-responsive">
+                        <div class="card-body">   
+                        <strong>
+                            <h5>  DINERO TOTAL CARGADO: ${{totalDinero}}</h5>
+                            <h5>  CANTIDAD DE TOTAL DE RECARGAS: {{numero}}</h5>
+                        </strong></div>
+                      <mat-form-field>
+                        <mat-label>Buscar</mat-label>
+                        <input matInput (keyup)="filtrar($event)" placeholder="Buscar">
+                      </mat-form-field>
+                      <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort class="table">
+      
+                        <ng-container matColumnDef="createdAt">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Dia - Hora </th>
+                          <td mat-cell *matCellDef="let trans"> {{trans.createdAt | date: "dd/MM/yyyy HH:mm"}} </td>
+                        </ng-container>
+      
+                        <ng-container matColumnDef="dinero">
+                          <th mat-header-cell *matHeaderCellDef mat-sort-header> Importe </th>
+                          <td mat-cell *matCellDef="let trans">
+      
+                            <div *ngIf="trans.ingreso==true;">
+                              <p style="color: darkgreen;">+{{trans.dinero}}</p>
+                            </div>
+                            <div *ngIf="trans.ingreso==false;">
+                              <p style="color:red;">-{{trans.dinero}}</p>
+                            </div>
+                          </td>
+                        </ng-container>
+                                  
+                        <tr mat-header-row *matHeaderRowDef="columnas"></tr>
+                        <tr mat-row *matRowDef="let row; columns: columnas;"></tr>
+                      </table>
+                      <mat-paginator [pageSizeOptions]="[10, 20, 30]" showFirstLastButtons></mat-paginator>
+      
+                    </div>
+      
+                  </div>
+                </div>
+              </div>
+            </div>           
+          </div>
+    </div>
+</div>

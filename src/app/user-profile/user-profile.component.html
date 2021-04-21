@@ -28,7 +28,7 @@
       <div class="col-md-4">
         <div class="card">
           <div class="card-header card-header-danger">
-            <h5 class="card-title">Generar QR</h5>
+            <h5 class="card-title">Código QR</h5>
 
           </div>
           <div class="card-body">
@@ -40,44 +40,48 @@
                   </ngx-qrcode>
                 </div>
               </div>
-              <button mat-raised-button (click)="generar()" class="btn btn-danger  btn-sm pull-right">Generar</button>
+             <!-- <button mat-raised-button (click)="generar()" class="btn btn-danger  btn-sm pull-right">Generar</button>-->
               <div class="clearfix"></div>
             </form>
-            <a class="btn btn-danger  btn-sm pull-right" [href]="href" (click)="downloadImage()" download={{client.apellido}}{{client.nombre}}>1° Descargar QR</a>
+            <div class="card">
+              <div class="card-body">
+               <!-- <form [formGroup]="mailForm" (ngSubmit)="onSend()">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Correo electrónico" type="email" formControlName="mail" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                    [disabled]="mailForm.invalid">Enviar QR</button>
+                  <div class="clearfix"></div>
+                </form>-->
+                <form [formGroup]="whatForm" (ngSubmit)="onSendWhat()">
+                  <div class="row">
+                    <div class="col-md-12">
+                      <mat-form-field class="example-full-width">
+                        <input matInput placeholder="Celular" type="number" formControlName="cel" required>
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  <button mat-raised-button type="submit" class="btn btn-danger pull-right"
+                    [disabled]="whatForm.invalid">Enviar QR por Whatsapp</button>
+                  <div class="clearfix"></div>
+                </form>
+              </div>
+            </div>
+           
+                 <a class="btn btn-danger  btn-sm pull-right" [href]="href" (click)="downloadImage()" download={{client.apellido}}{{client.nombre}}>1° Descargar QR</a>
 
-            <a class="btn btn-danger  btn-sm pull-right" target="_blank" href="https://api.whatsapp.com/send?phone={{client.cel}}&text=Muchas gracias {{client.nombre}} por visitarnos. Te enviamos el código QR" >2° Enviar Whatsapp</a>
-<!--             <button class="btn btn-danger  btn-sm pull-right"  (click)="onWhat()">Whatsapp</button>
+            <a class="btn btn-danger  btn-sm pull-right" target="_blank" href="https://api.whatsapp.com/send?phone={{client.cel}}&text=Muchas gracias {{client.nombre}} por visitarnos. Te enviamos el código QR" >2° Abrir Whatsapp Web</a>
+
+               
+           <!--             <button class="btn btn-danger  btn-sm pull-right"  (click)="onWhat()">Whatsapp</button>
  -->
           </div>
         </div>
-        <div class="card">
-          <div class="card-body">
-           <!-- <form [formGroup]="mailForm" (ngSubmit)="onSend()">
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Correo electrónico" type="email" formControlName="mail" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
-                [disabled]="mailForm.invalid">Enviar QR</button>
-              <div class="clearfix"></div>
-            </form>-->
-            <form [formGroup]="whatForm" (ngSubmit)="onSendWhat()">
-              <div class="row">
-                <div class="col-md-12">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Celular" type="number" formControlName="cel" required>
-                  </mat-form-field>
-                </div>
-              </div>
-              <button mat-raised-button type="submit" class="btn btn-danger pull-right"
-                [disabled]="whatForm.invalid">Enviar QR</button>
-              <div class="clearfix"></div>
-            </form>
-          </div>
-        </div>
+      
       </div>
     </div>
     <div class="row">

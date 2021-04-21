@@ -5,19 +5,21 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class DataService {
-
-  private REST_API_SERVER = "http://localhost:8090/api/users";
-  private API_SERVER = "http://localhost:8090/api/";
-
+  
+   /* private REST_API_SERVER = "http://localhost:8090/api/users";
+    private API_SERVER = "http://localhost:8090/api/";*/
+    
+  private REST_API_SERVER = "http://192.168.10.100:8090/api/users";
+  private API_SERVER = "http://192.168.10.100:8090/api/";
   constructor(private httpClient: HttpClient) { }
 
-  public sendGetRequest(){
+  public sendGetRequest() {
     return this.httpClient.get(this.REST_API_SERVER);
   }
-  public getUrlServer(){
+  public getUrlServer() {
     return this.REST_API_SERVER;
   }
-  public obtenerUrlServer(){
+  public obtenerUrlServer() {
     return this.API_SERVER;
   }
 }

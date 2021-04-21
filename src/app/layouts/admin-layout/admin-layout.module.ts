@@ -25,6 +25,7 @@ import { ListComponent } from '../../list/list.component';
 import { AddComponent } from '../../add/add.component';
 import { EditComponent } from '../../edit/edit.component';
 
+import { ConsumoComponent } from '../../consumo/consumo.component';
 
 import {MatTableModule } from "@angular/material/table";
 
@@ -64,7 +65,8 @@ import { MatProgressSpinnerModule} from "@angular/material/progress-spinner";
     UpgradeComponent,
     ListComponent,
     AddComponent,
-    EditComponent
+    EditComponent,
+    ConsumoComponent
   ]
 })
 
