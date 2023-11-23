@@ -19,12 +19,12 @@ export class AddComponent implements OnInit {
 
     this.addClient = new FormGroup({
       nombre: new FormControl(null, Validators.required),
-      apellido: new FormControl(null, Validators.required),
-      dni: new FormControl(null, Validators.required),
-      provincia: new FormControl('Mendoza'),
+      apellido: new FormControl(null),
+      dni: new FormControl(null),
+      provincia: new FormControl('San Juan'),
       pais: new FormControl('Argentina'),
       mail: new FormControl(''),
-      cel: new FormControl('549261', Validators.required),
+      cel: new FormControl('549264', Validators.required),
       nacimiento: new FormControl(''),
 
     });

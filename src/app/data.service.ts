@@ -10,7 +10,7 @@ export class DataService {
     private API_SERVER = "http://localhost:8090/api/";*/
     
   private REST_API_SERVER = "http://192.168.10.100:8090/api/users";
-  private API_SERVER = "http://192.168.10.100:8090/api/";
+  private API_SERVER = "http://127.0.0.1:8090/api/";
   constructor(private httpClient: HttpClient) { }
 
   public sendGetRequest() {

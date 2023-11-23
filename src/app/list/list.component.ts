@@ -20,7 +20,7 @@ export class ListComponent implements OnInit {
 
   clients = [];
 
-  columnas: string[] = ['apellido', 'nombre', 'dni', 'dinero', 'acciones'];
+  columnas: string[] = ['apellido', 'nombre', 'cel', 'dinero', 'acciones'];
 
   datos: Client[] = [];
   dataSource: MatTableDataSource<Client>;
@@ -68,6 +68,6 @@ export class Articulo {
 
 }
 export class Client {
-  constructor(public nombre: string, public apellido: string, public dni: string, public dinero: number) {
+  constructor(public nombre: string, public apellido: string, public cel: string, public dinero: number) {
   }
 }

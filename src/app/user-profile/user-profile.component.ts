@@ -117,6 +117,15 @@ export class UserProfileComponent implements OnInit {
       ,
       (err) => console.log(err)
     );
+    this.httpClient.get<any>(this.dataService.obtenerUrlServer() + 'transactions/'+this.id+'/info/').subscribe(
+      (res) => {
+        this.dataSource = new MatTableDataSource(res.transactions);
+        this.dataSource.sort = this.sort;
+        this.dataSource.paginator = this.paginator;
+      }
+      ,
+      (err) => console.log(err)
+    );
   }
   filtrar(event: Event) {
     const filtro = (event.target as HTMLInputElement).value;

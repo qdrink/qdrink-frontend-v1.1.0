@@ -211,7 +211,13 @@ export class DashboardComponent implements OnInit {
     ////
     this.httpClient.get<any>(this.dataService.obtenerUrlServer() + 'clients/info').subscribe(data => {
       //console.log(data);
-      this.info = data
+      this.info.users = data.clients
+    })
+    this.httpClient.get<any>(this.dataService.obtenerUrlServer() + 'transactions/info').subscribe(data => {
+      //console.log(data);
+      this.info.transactions = data.transactions
+      this.info.ingreso = data.ingresos
+      this.info.salida = data.salidas
     })
     /* ----------==========     Daily Sales Chart initialization For Documentation    ==========---------- */
 
