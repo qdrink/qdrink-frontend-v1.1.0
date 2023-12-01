@@ -9,67 +9,108 @@
           </div>
           <div class="card-body">
             <form [formGroup]="editClient" (ngSubmit)="onSubmit()">
-
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Apellido" type="text" formControlName="apellido" required>
+                    <input
+                      matInput
+                      placeholder="Nombre"
+                      type="text"
+                      formControlName="nombre"
+                      required
+                    />
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Nombre" type="text" formControlName="nombre" required>
+                    <input
+                      matInput
+                      placeholder="Apellido"
+                      type="text"
+                      formControlName="apellido"
+                    />
                   </mat-form-field>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                  <input matInput type="date" formControlName="nacimiento">
-                </mat-form-field>
-
+                    <input
+                      matInput
+                      placeholder="Número de teléfono"
+                      type="text"
+                      formControlName="cel"
+                      required
+                    />
+                  </mat-form-field>
+                </div>
+                <div class="col-md-6">
+                  <label>Usuario ocupado: </label>
+                  <input type="checkbox" formControlName="ocupado" />
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <mat-form-field class="example-full-width">
+                    <input matInput type="date" formControlName="nacimiento" />
+                  </mat-form-field>
                 </div>
               </div>
 
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Identificación personal (DNI). Si es un número no separe con puntos"
-                      type="text" formControlName="dni" required>
+                    <input
+                      matInput
+                      placeholder="Identificación personal (DNI). Si es un número no separe con puntos"
+                      type="text"
+                      formControlName="dni"
+                   />
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Correo electrónico" type="email" formControlName="mail">
+                    <input
+                      matInput
+                      placeholder="Correo electrónico"
+                      type="email"
+                      formControlName="mail"
+                    />
                   </mat-form-field>
                 </div>
               </div>
+      
               <div class="row">
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Número de teléfono" type="text" formControlName="cel">
-                  </mat-form-field>
-                </div>
-                <div class="col-md-6">
-                  <label>Usuario ocupado: </label> <input type="checkbox" formControlName="ocupado">
-
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <mat-form-field class="example-full-width">
-                    <input matInput placeholder="Ciudad o Provincia" type="text" formControlName="provincia">
+                    <input
+                      matInput
+                      placeholder="Ciudad o Provincia"
+                      type="text"
+                      formControlName="provincia"
+                    />
                   </mat-form-field>
                 </div>
                 <div class="col-md-6">
                   <mat-form-field class="example-full-width">
-                    <input matInput placeholder="País" type="text" formControlName="pais">
+                    <input
+                      matInput
+                      placeholder="País"
+                      type="text"
+                      formControlName="pais"
+                    />
                   </mat-form-field>
                 </div>
               </div>
 
-              <button mat-raised-button type="submit" [disabled]="editClient.invalid"
-                class="btn btn-danger pull-right">Editar</button>
+              <button
+                mat-raised-button
+                type="submit"
+                [disabled]="editClient.invalid"
+                class="btn btn-danger pull-right"
+              >
+                Editar
+              </button>
               <div class="clearfix"></div>
             </form>
           </div>

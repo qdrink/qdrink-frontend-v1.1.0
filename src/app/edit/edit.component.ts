@@ -29,8 +29,8 @@ export class EditComponent implements OnInit {
 
     this.editClient = new FormGroup({
       nombre: new FormControl(Validators.required),
-      apellido: new FormControl(Validators.required),
-      dni: new FormControl(Validators.requiredTrue),
+      apellido: new FormControl(),
+      dni: new FormControl(),
       dinero: new FormControl(),
       provincia: new FormControl(),
       pais: new FormControl(),
@@ -41,18 +41,18 @@ export class EditComponent implements OnInit {
 
     });
   
-    this.httpClient.get<any>(this.dataService.obtenerUrlServer()+'clients/check/'+this.id).subscribe(
+    this.httpClient.get<any>(this.dataService.obtenerUrlServer()+'clients/info/'+this.id).subscribe(
       (res) => {
       this.editClient = this.fb.group({
-        nombre: res.nombre,
-        apellido: res.apellido,
-        dni: res.dni,
-        provincia: res.provincia,
-        pais:res.pais,
-        cel: res.cel,
-        mail:res.mail,
-        ocupado:res.ocupado,
-        nacimiento: (res.nacimiento)
+        nombre: res.client.nombre,
+        apellido: res.client.apellido,
+        dni: res.client.dni,
+        provincia: res.client.provincia,
+        pais:res.client.pais,
+        cel: res.client.cel,
+        mail:res.client.mail,
+        ocupado:res.client.ocupado,
+        nacimiento: res.client.nacimiento
       })
       }
       ,
